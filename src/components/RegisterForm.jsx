@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
 import TextField from "@mui/material/TextField"
@@ -26,13 +27,9 @@ export const registerSchema = object({
     .matches(/[!,?{}><%&$#£+-.]+/, "Password bir özel karakter içermelidir"),
 })
 
-const RegisterForm = ({
-  values,
-  handleChange,
-  errors,
-  touched,
-  handleBlur,
-}) => {
+const RegisterForm = ({values,handleChange,errors,touched,handleBlur}) => {
+
+  
   return (
     <div>
       <Form>
