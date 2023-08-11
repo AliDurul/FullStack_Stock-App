@@ -7,21 +7,21 @@ import { object, string } from "yup"
 
 export const registerSchema = object({
   username: string()
-    .max(10, "Kullanıcı adı 10 karakterden az olmalıdır.")
+    .max(10, "Kullanici adi 10 karakterden az olmalidir.")
     .required("username zorunludur"),
   first_name: string()
-    .max(20, "İsim 20 karakterden az olmalıdır.")
+    .max(20, "İsim 20 karakterden az olmalidir.")
     .required("first_name zorunludur"),
   last_name: string()
-    .max(20, "Soyisim 30 karakterden az olmalıdır.")
+    .max(20, "Soyisim 30 karakterden az olmalidir.")
     .required("last_name zorunludur"),
 
   email: string().email().required("Email zorunludur"),
   password: string()
     .required("password zorunludur")
-    .min(8, "password en az 8 karakter olmalıdır")
-    .max(20, "password en fazla 20 karakter olmalıdır")
-    .matches(/\d+/, "Password bir sayı içermelidir")
+    .min(8, "password en az 8 karakter olmalidir")
+    .max(20, "password en fazla 20 karakter olmalidir")
+    .matches(/\d+/, "Password bir sayi içermelidir")
     .matches(/[a-z]/, "Password bir küçük harf içermelidir")
     .matches(/[A-Z]/, "Password bir büyük harf içermelidir")
     .matches(/[!,?{}><%&$#£+-.]+/, "Password bir özel karakter içermelidir"),

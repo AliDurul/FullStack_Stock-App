@@ -32,7 +32,7 @@ export const login = async (userData) => {
 import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { fetchFail, fetchStart, loginSuccess, logoutSuccess } from "../features/authSlice";
+import { fetchFail, fetchStart, loginSuccess, logoutSuccess, registerSuccess } from "../features/authSlice";
 import axios from "axios";
 
 const useAuthApiCall = () => {
@@ -41,12 +41,11 @@ const useAuthApiCall = () => {
   const dispatch = useDispatch();
 
   const login = async (userData) => {
-    const BASE_URL = "https://11510.fullstack.clarusway.com";
 
     dispatch(fetchStart());
     try {
       const { data } = await axios.post(
-        `${BASE_URL}/account/auth/login/`,
+        `${import.meta.env.VITE_BASE_URL}/account/auth/login/`,
         userData
       );
       dispatch(loginSuccess(data));
@@ -59,12 +58,11 @@ const useAuthApiCall = () => {
   };
 
   const logout = async () => {
-    const BASE_URL = "https://11510.fullstack.clarusway.com";
 
     dispatch(fetchStart());
     try {
       await axios.post(
-        `${BASE_URL}/account/auth/logout/`
+        `${import.meta.env.VITE_BASE_URL}/account/auth/logout/`
       );
       dispatch(logoutSuccess());
       toastSuccessNotify("Logout  islemi basarili");
@@ -76,7 +74,25 @@ const useAuthApiCall = () => {
     }
   };
 
-  return { login, logout };
+  const register = async (userData) => {
+
+    dispatch(fetchStart());
+    try {
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/account/register/`,
+        userData
+      );
+      dispatch(registerSuccess(data));
+      toastSuccessNotify("register islemi basarili");
+      navigate("/stock");
+    } catch (error) {
+      dispatch(fetchFail());
+      console.log(error);
+      toastErrorNotify(error.message);
+    }
+  };
+
+  return { login, logout, register };
 };
 
 export default useAuthApiCall;
