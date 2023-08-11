@@ -126,11 +126,8 @@ export default function Dashboard() {
         <Drawer sx={{
           '& .MuiDrawer-paper': {
             backgroundColor: 'secondary.main', 
-            color:"white"
           },
-          '& .MuiSvgIcon-root': {
-            color:"white"
-          }
+       
         }} variant="permanent" open={open} >
           <DrawerHeader  >
             <IconButton onClick={handleDrawerClose}>

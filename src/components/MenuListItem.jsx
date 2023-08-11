@@ -50,21 +50,30 @@ const MenuListItem = () => {
         {
             title: "Admin Panel",
             icon: <SupervisorAccountIcon />,
-            url: "https://10001.fullstack.clarusway.com/admin",
+            url: "https://11510.fullstack.clarusway.com/admin",
         },
     ]
 
 
     return (
         <div>
-            <List > 
+            <List >
                 {icons.map((item, index) => (
-                    <ListItem onClick={()=>navigate(item.url)} key={index} disablePadding sx={{ display: 'block' }}>
+                    <ListItem onClick={() => {
+                        item.url.includes('http' || 'www' )
+                        ? window.open(item.url, "_blank")
+                        : navigate(item.url)
+                    }}
+                        key={index} disablePadding sx={{ display: 'block' }}>
                         <ListItemButton
                             sx={{
                                 minHeight: 48,
                                 justifyContent: open ? 'initial' : 'center',
                                 px: 2.5,
+                                color: "white",
+                                "& .MuiSvgIcon-root": { color: "white" },
+                                "&:hover": { color: "red" },
+                                "&:hover .MuiSvgIcon-root": { color: "red" }
                             }}
                         >
                             <ListItemIcon
