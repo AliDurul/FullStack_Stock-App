@@ -13,6 +13,8 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import MenuListItem from '../components/MenuListItem';
 import { Outlet } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import useAuthApiCall from '../hooks/useAuthApiCall';
 
 
 
@@ -87,6 +89,8 @@ export default function Dashboard() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
+  const { logout } = useAuthApiCall()
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -113,20 +117,28 @@ export default function Dashboard() {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" noWrap component="div">
-              Mini variant drawer
+            <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
+              Stock App
             </Typography>
+            <Button variant='contained' onClick={() => logout()}>Logout</Button>
           </Toolbar>
         </AppBar>
-        <Drawer variant="permanent" open={open}>
-          <DrawerHeader>
+        <Drawer sx={{
+          '& .MuiDrawer-paper': {
+            backgroundColor: 'secondary.main', 
+            color:"white"
+          },
+          '& .MuiSvgIcon-root': {
+            color:"white"
+          }
+        }} variant="permanent" open={open} >
+          <DrawerHeader  >
             <IconButton onClick={handleDrawerClose}>
               {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
             </IconButton>
           </DrawerHeader>
           <Divider />
           <MenuListItem />
-          <Divider />
           {/* <List>
           {['All mail', 'Trash', 'Spam'].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
@@ -152,7 +164,7 @@ export default function Dashboard() {
           ))}
         </List> */}
         </Drawer>
-        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+        <Box component="main" sx={{ flexGrow: 1, p: 3, }} >
           <DrawerHeader />
           <Outlet />
         </Box>

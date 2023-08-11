@@ -57,7 +57,7 @@ const MenuListItem = () => {
 
     return (
         <div>
-            <List>
+            <List > 
                 {icons.map((item, index) => (
                     <ListItem onClick={()=>navigate(item.url)} key={index} disablePadding sx={{ display: 'block' }}>
                         <ListItemButton
