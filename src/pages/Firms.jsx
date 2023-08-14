@@ -5,14 +5,18 @@ import Grid from '@mui/material/Grid'
 import useStockCall from '../hooks/useStockCall'
 import { useSelector } from 'react-redux'
 import FirmCard from '../components/FirmCard'
+import FirmUpdateModal from '../components/FirmUpdateModal'
+import { useState } from 'react'
 
 
 
 const Firms = () => {
 
   const { firms } = useSelector(state => state.stock)
+  
   const { getStockData } = useStockCall()
-
+ 
+  const [open, setOpen] = useState(false);
 
 
 
@@ -24,7 +28,10 @@ const Firms = () => {
   return <div>
 
     <Typography variant="h4" color="red" mb={3}>Firms</Typography>
-    <Button variant="contained">NEW FIRM</Button>
+    <Button onClick={()=>setOpen(true)} variant="contained">NEW FIRM</Button>
+
+    <FirmUpdateModal setOpen={setOpen} open={open}/>
+
 
     <Grid container spacing={5} justifyContent={"center"} mt={3}>
       {
