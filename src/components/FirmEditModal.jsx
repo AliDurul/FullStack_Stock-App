@@ -8,18 +8,8 @@ import Typography from '@mui/material/Typography';
 import { TextField } from '@mui/material';
 import { Form, Formik } from 'formik';
 import useStockCall from '../hooks/useStockCall';
+import { modalStyle } from '../styles/globalStyles';
 
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-};
 
 export default function FirmEditModal({ setOpen, open, firm }) {
 
@@ -43,7 +33,7 @@ export default function FirmEditModal({ setOpen, open, firm }) {
         }}
       >
         <Fade in={open}>
-          <Box sx={style}>
+          <Box sx={modalStyle}>
             <Typography id="transition-modal-title" variant="h6" component="h2">
               Text in a modal
             </Typography>
@@ -56,7 +46,7 @@ export default function FirmEditModal({ setOpen, open, firm }) {
                 address: firm.address
               }}
               onSubmit={(values) => {
-                updateStockData("firms",firm.id,values)
+                updateStockData("firms", firm.id, values)
               }}
 
             >
@@ -78,7 +68,7 @@ export default function FirmEditModal({ setOpen, open, firm }) {
                         label="Address"
                         name="address"
                         id="Address"
-                        type="text"
+                        type="address"
                         variant="outlined"
                         onChange={handleChange}
                         value={values.address}
@@ -88,7 +78,7 @@ export default function FirmEditModal({ setOpen, open, firm }) {
                         label="Phone"
                         name="phone"
                         id="Phone"
-                        type="text"
+                        type="tel"
                         variant="outlined"
                         onChange={handleChange}
                         value={values.phone}
@@ -98,14 +88,14 @@ export default function FirmEditModal({ setOpen, open, firm }) {
                         label="Image"
                         name="image"
                         id="Image"
-                        type="text"
+                        type="url"
                         variant="outlined"
                         onChange={handleChange}
                         value={values.image}
 
 
                       />
-                      <Button variant="contained" type="submit"  onClick={handleClose}>
+                      <Button variant="contained" type="submit" onClick={handleClose}>
                         Submit
                       </Button>
                     </Box>
