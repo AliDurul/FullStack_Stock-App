@@ -10,8 +10,8 @@ import FirmCard from '../components/FirmCard'
 
 const Firms = () => {
 
-const {firms} = useSelector(state=> state.stock)
-  const {getStockData} = useStockCall()
+  const { firms } = useSelector(state => state.stock)
+  const { getStockData } = useStockCall()
 
 
 
@@ -30,12 +30,12 @@ const {firms} = useSelector(state=> state.stock)
       {
         firms?.map((firm) => (
           <Grid item key={firm.id}>
-            <FirmCard  {...firm}/>
+            <FirmCard  firm={firm} />
           </Grid>
         ))
       }
     </Grid>
-
+  
   </div>
 }
 
