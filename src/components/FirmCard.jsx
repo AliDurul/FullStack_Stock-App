@@ -1,30 +1,40 @@
+/* eslint-disable react/prop-types */
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline"
+import EditIcon from "@mui/icons-material/Edit"
+import { btnStyle } from '../styles/globalStyles';
 
-export default function FirmCard() {
+export default function FirmCard({ address, image, name,phone }) {
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardMedia
-        sx={{ height: 140 }}
-        image="/static/images/cards/contemplative-reptile.jpg"
-        title="green iguana"
-      />
+    <Card sx={{
+      p:2,
+      width:"300px",
+      height:"400px",
+      display:"flex",
+      flexDirection:"column",
+      justifyContent:"space-between",
+      alignItems:"center"
+
+
+     }}>
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Lizard
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
-        </Typography>
+        <Typography gutterBottom variant="h5" component="div">{name}</Typography>
+        <Typography variant="body2" color="text.secondary">{address}</Typography>
       </CardContent>
+      <CardMedia
+        sx={{ height: 140,p:1, objectFit:"contain" }}
+        image={image}
+        title={name}
+        component={"img"}
+      />
+      <Typography variant="body2" color="text.secondary">{phone}</Typography>
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+       <EditIcon sx={btnStyle}/>
+       <DeleteOutlineIcon sx={btnStyle}/>
       </CardActions>
     </Card>
   );
