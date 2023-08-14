@@ -5,8 +5,6 @@ const Purchases = () => {
   const { getStockData } = useStockCall()
   useEffect(() => {
     getStockData('purchases')
-
-
   }, [])
 
   return <div>Purchases</div>
