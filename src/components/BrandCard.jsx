@@ -10,13 +10,11 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline"
 import EditIcon from "@mui/icons-material/Edit"
 import { btnStyle } from '../styles/globalStyles';
 import useStockCall from '../hooks/useStockCall';
-import FirmModal from '../modals/FirmModal';
-import { useState } from 'react';
 
-export default function FrimCard({ firm, handleOpen, setFakeFirm }) {
+export default function BrandCard({ brand, handleOpen, setFakeBrand }) {
 
   
-    const { address, image, name, phone,id } = firm
+    const { image, name,id } = brand
 
     const {deleteStockData} = useStockCall()
 
@@ -27,30 +25,24 @@ export default function FrimCard({ firm, handleOpen, setFakeFirm }) {
             display: "flex",
             flexDirection: "column",
             justifyContent:"space-between",
-            alignItems:"center"
+            padding:"16px"
         }}>
 
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                     {name}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    {address}
-                </Typography>
             </CardContent>
             <CardMedia
                 component="img"
                 alt="green iguana"
-                height="140"
+                height="160"
                 image={image}
                 sx={{ height:140, p:1, objectFit:"contain" }}
             />
-            <Typography variant="body2" color="text.secondary">
-                {phone}
-            </Typography>
-            <CardActions>
-                <EditIcon sx={btnStyle} onClick={()=>{handleOpen(), setFakeFirm(firm)}} />
-                <DeleteOutlineIcon onClick={()=>deleteStockData('firms',id)}  sx={btnStyle} />
+            <CardActions sx={{padding:"16px", mx:"auto"} }>
+                <EditIcon sx={btnStyle} onClick={()=>{handleOpen(), setFakeBrand(brand)}} />
+                <DeleteOutlineIcon onClick={()=>deleteStockData('brands',id)}  sx={btnStyle} />
             </CardActions>
         
         </Card>

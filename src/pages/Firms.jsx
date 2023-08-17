@@ -1,49 +1,52 @@
-import Typography from '@mui/material/Typography'
-import Button from '@mui/material/Button'
-import { useEffect } from 'react'
-import Grid from '@mui/material/Grid'
-import useStockCall from '../hooks/useStockCall'
-import { useSelector } from 'react-redux'
-import FirmCard from '../components/FirmCard'
-import FirmUpdateModal from '../components/FirmUpdateModal'
-import { useState } from 'react'
-
-
+/* eslint-disable react-hooks/exhaustive-deps */
+import { Button, Grid, Typography } from "@mui/material"
+import FrimCard from "../components/FirmCard"
+import { useEffect } from "react"
+import useStockCall from "../hooks/useStockCall"
+import { useSelector } from "react-redux"
+import FirmModal from "../modals/FirmModal"
+import { useState } from "react"
 
 const Firms = () => {
-
   const { firms } = useSelector(state => state.stock)
-  
-  const { getStockData } = useStockCall()
- 
-  const [open, setOpen] = useState(false);
 
+  const { getStockData } = useStockCall()
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true)
+
+  const [fakeFirm, setFakeFirm] = useState({ name: "", phone: "", image: "", address: "" })
 
 
   useEffect(() => {
-    getStockData('firms')
+    getStockData("firms")
   }, [])
+ 
+const handleNewFrim = () => {
+  setFakeFirm({ name: "", phone: "", image: "", address: "" }),
+  setOpen(true)
+}
 
+  return (
+    <div>
+      <Typography variant="h4" color={"red"} mb={3} >Firms</Typography>
+      <Button onClick={handleNewFrim} variant="contained" >NEW FIRM</Button>
 
-  return <div>
+      <FirmModal open={open} setOpen={setOpen} fakeFirm={fakeFirm} />
 
-    <Typography variant="h4" color="red" mb={3}>Firms</Typography>
-    <Button onClick={()=>setOpen(true)} variant="contained">NEW FIRM</Button>
+      <Grid container mt={3} spacing={5} justifyContent={"center"}>
 
-    <FirmUpdateModal setOpen={setOpen} open={open}/>
+        {
+          firms.map(firm => (
+            <Grid item key={firm.id}>
+              <FrimCard handleOpen={handleOpen} setFakeFirm={setFakeFirm} firm={firm} />
+            </Grid>
+          ))
+        }
 
+      </Grid>
 
-    <Grid container spacing={5} justifyContent={"center"} mt={3}>
-      {
-        firms?.map((firm) => (
-          <Grid item key={firm.id}>
-            <FirmCard  firm={firm} />
-          </Grid>
-        ))
-      }
-    </Grid>
-  
-  </div>
+    </div>
+  )
 }
 
 export default Firms
