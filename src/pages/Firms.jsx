@@ -9,11 +9,9 @@ import { useState } from "react"
 
 const Firms = () => {
   const { firms } = useSelector(state => state.stock)
-
   const { getStockData } = useStockCall()
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true)
-
   const [fakeFirm, setFakeFirm] = useState({ name: "", phone: "", image: "", address: "" })
 
 

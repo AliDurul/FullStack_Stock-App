@@ -25,7 +25,8 @@ export default function BrandCard({ brand, handleOpen, setFakeBrand }) {
             display: "flex",
             flexDirection: "column",
             justifyContent:"space-between",
-            padding:"16px"
+            padding:"16px",
+            boxShadow: 10,
         }}>
 
             <CardContent>
