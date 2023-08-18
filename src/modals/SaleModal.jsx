@@ -12,15 +12,12 @@ import { useSelector } from 'react-redux';
 
 
 
-export default function ProductModal({ open, setOpen }) {
+export default function SaleModal({ open, setOpen }) {
 
     const { createStockData } = useStockCall()
-    const { categories } = useSelector(state => state.stock)
+    const { products } = useSelector(state => state.stock)
     const { brands } = useSelector(state => state.stock)
-
-
-
-
+    const { firms } = useSelector(state => state.stock)
 
     const handleClose = () => setOpen(false);
 
@@ -43,49 +40,51 @@ export default function ProductModal({ open, setOpen }) {
                     <Box sx={modalStyle}>
 
                         <Formik
-                            initialValues={{
-                                name: "",
-                                category_id: "",
-                                brand_id: ""
-                            }}
+                            initialValues={
+                                {
+
+                                    firm_id: "",
+                                    brand_id: "",
+                                    product_id: "",
+                                    quantity: "",
+                                    price: ""
+                                }
+                            }
 
                             onSubmit={(values) => {
-
-                                createStockData('products', values)
+                                createStockData('purchases', values)
                                 handleClose()
-
                             }}
                         >
                             {
                                 ({ handleChange, handleBlur, values }) => (
                                     <Form>
-                                        <Typography variant={"h6"} color={"error"} mb={2}> Add New Product  </Typography>
+                                        <Typography variant={"h6"} color={"error"} mb={2}> Add New Purchase  </Typography>
                                         <Box
                                             sx={{ display: "flex", flexDirection: "column", gap: 2 }}
                                         >
                                             <FormControl fullWidth>
-                                                <InputLabel id="Categories">Categories</InputLabel>
+                                                <InputLabel id="Firm">Firm</InputLabel>
                                                 <Select
-                                                    labelId="Categories"
-                                                    name="category_id"
-                                                    id="Categories"
-                                                    label="Categories"
+                                                    labelId="Firm"
+                                                    name="firm_id"
+                                                    id="Firm"
+                                                    label="Firm"
                                                     onChange={handleChange}
-                                                    value={values.category_id}
+                                                    value={values.firm_id}
                                                 >
                                                     {
-                                                        categories.map(brand => <MenuItem key={brand.id} value={brand.id}>{brand.name}</MenuItem>)
+                                                        firms.map(firm => <MenuItem key={firm.id} value={firm.id}>{firm.name}</MenuItem>)
                                                     }
                                                 </Select>
                                             </FormControl>
-
                                             <FormControl fullWidth>
-                                                <InputLabel id="Brands">Brands</InputLabel>
+                                                <InputLabel id="Brand">Brand</InputLabel>
                                                 <Select
-                                                    labelId="Brands"
+                                                    labelId="Brand"
                                                     name="brand_id"
-                                                    id="Brands"
-                                                    label="Brands"
+                                                    id="Brand"
+                                                    label="Brand"
                                                     onChange={handleChange}
                                                     value={values.brand_id}
                                                 >
@@ -94,16 +93,41 @@ export default function ProductModal({ open, setOpen }) {
                                                     }
                                                 </Select>
                                             </FormControl>
+                                            <FormControl fullWidth>
+                                                <InputLabel id="Product">Product</InputLabel>
+                                                <Select
+                                                    labelId="Product"
+                                                    name="product_id"
+                                                    id="Product"
+                                                    label="Product"
+                                                    onChange={handleChange}
+                                                    value={values.product_id}
+                                                >
+                                                    {
+                                                        products.map(product => <MenuItem key={product.id} value={product.id}>{product.name}</MenuItem>)
+                                                    }
+                                                </Select>
+                                            </FormControl>
 
                                             <TextField
-                                                label="Product Name"
-                                                name="name"
-                                                id="name"
-                                                type="text"
+                                                label="Quantity"
+                                                name="quantity"
+                                                id="quantity"
+                                                type="number"
                                                 variant="outlined"
                                                 onChange={handleChange}
                                                 onBlur={handleBlur}
-                                                value={values.name}
+                                                value={values.quantity}
+                                            />
+                                            <TextField
+                                                label="Price"
+                                                name="price"
+                                                id="price"
+                                                type="number"
+                                                variant="outlined"
+                                                onChange={handleChange}
+                                                onBlur={handleBlur}
+                                                value={values.price}
                                             />
                                             <Button variant="contained" type="submit">
                                                 Submit

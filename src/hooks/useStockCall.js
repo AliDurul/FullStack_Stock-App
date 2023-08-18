@@ -1,5 +1,5 @@
 import { fetchFail, fetchStart, getStockSuccess } from "../features/stockSlice";
-import { toastSuccessNotify } from "../helper/ToastNotify";
+import { toastErrorNotify, toastSuccessNotify } from "../helper/ToastNotify";
 import useAxios from "./useAxios";
 import { useDispatch } from "react-redux";
 
@@ -27,7 +27,7 @@ const useStockCall = () => {
     } catch (error) {
       console.log(error);
       dispatch(fetchFail);
-      toastSuccessNotify(`${url} can not be  deleted!`);
+      toastErrorNotify(`${url} can not be  deleted!`);
     }
   };
 
@@ -40,7 +40,7 @@ const useStockCall = () => {
     } catch (error) {
       console.log(error);
       dispatch(fetchFail);
-      toastSuccessNotify(`${url} can not be  Edited!`);
+      toastErrorNotify(`${url} can not be  Edited!`);
     }
   };
 
@@ -53,7 +53,7 @@ const useStockCall = () => {
     } catch (error) {
       console.log(error);
       dispatch(fetchFail);
-      toastSuccessNotify(`${url} can not be  added!`);
+      toastErrorNotify(`${url} can not be  added!`);
     }
   };
 
