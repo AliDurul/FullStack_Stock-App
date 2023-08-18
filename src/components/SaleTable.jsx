@@ -19,6 +19,8 @@ export default function SaleTable() {
     const { sales, brands, products } = useSelector(state => state.stock)
     const { deleteStockData, updateStockData } = useStockCall()
     const [rowModesModel, setRowModesModel] = useState({});
+    let brandNames = []
+    let productNames = []
 
     const handleRowEditStop = (params, event) => {
         if (params.reason === GridRowEditStopReasons.rowFocusOut) {
@@ -44,13 +46,18 @@ export default function SaleTable() {
     };
 
     const processRowUpdate = (newRow) => {
+
+        let brandID = brands.filter(brand => brand.name === newRow.brand).map(item => item.id)
+        let productID = products.filter(product => product.name === newRow.product).map(item => item.id)
+    
         let updatedData = {
-            brand_id: newRow.brand_id,
-            product_id: newRow.product_id,
+            brand_id: brandID[0],
+            product_id: productID[0],
             quantity: newRow.quantity,
             price: newRow.price
         }
-        updateStockData('sales', newRow.id ,updatedData)
+        updateStockData('sales', newRow.id, updatedData)
+
         return newRow;
     };
 
@@ -58,8 +65,7 @@ export default function SaleTable() {
         setRowModesModel(newRowModesModel);
     };
 
-    let brandNames = []
-    let productNames = []
+  
 
     brands.forEach(element => {
         brandNames.push(element.name)
@@ -68,7 +74,7 @@ export default function SaleTable() {
         productNames.push(element.name)
     });
     const columns = [
-        { field: 'createds', headerName: 'Date', headerAlign: "center", flex: 1, align: "center", },
+        { field: 'createds', headerName: 'Date', headerAlign: "center", flex: 1, align: "center" },
         {
             field: 'brand',
             headerName: 'Brand',

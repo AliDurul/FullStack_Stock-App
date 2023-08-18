@@ -17,6 +17,7 @@ const Purchases = () => {
     getStockData("firms")
     getStockData("purchases")
     getStockData("brands")
+    getStockData("products")
   }, [])
  
 
