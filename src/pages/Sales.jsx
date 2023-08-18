@@ -28,7 +28,6 @@ const Sales = () => {
 
       <SaleTable/>
 
-
       <SaleModal open={open} setOpen={setOpen}  />
 
     </div>
