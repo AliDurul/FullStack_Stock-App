@@ -5,7 +5,7 @@ import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
 import { Form, Formik } from 'formik';
-import { FormControl, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material';
+import { FormControl, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import useStockCall from '../hooks/useStockCall';
 import { modalStyle } from '../styles/globalStyles';
 import { useSelector } from 'react-redux';
@@ -17,7 +17,6 @@ export default function SaleModal({ open, setOpen }) {
     const { createStockData } = useStockCall()
     const { products } = useSelector(state => state.stock)
     const { brands } = useSelector(state => state.stock)
-    const { firms } = useSelector(state => state.stock)
 
     const handleClose = () => setOpen(false);
 
@@ -43,41 +42,25 @@ export default function SaleModal({ open, setOpen }) {
                             initialValues={
                                 {
 
-                                    firm_id: "",
-                                    brand_id: "",
                                     product_id: "",
+                                    brand_id: "",
                                     quantity: "",
                                     price: ""
                                 }
                             }
 
                             onSubmit={(values) => {
-                                createStockData('purchases', values)
+                                createStockData('sales', values)
                                 handleClose()
                             }}
                         >
                             {
                                 ({ handleChange, handleBlur, values }) => (
                                     <Form>
-                                        <Typography variant={"h6"} color={"error"} mb={2}> Add New Purchase  </Typography>
+                                      
                                         <Box
                                             sx={{ display: "flex", flexDirection: "column", gap: 2 }}
                                         >
-                                            <FormControl fullWidth>
-                                                <InputLabel id="Firm">Firm</InputLabel>
-                                                <Select
-                                                    labelId="Firm"
-                                                    name="firm_id"
-                                                    id="Firm"
-                                                    label="Firm"
-                                                    onChange={handleChange}
-                                                    value={values.firm_id}
-                                                >
-                                                    {
-                                                        firms.map(firm => <MenuItem key={firm.id} value={firm.id}>{firm.name}</MenuItem>)
-                                                    }
-                                                </Select>
-                                            </FormControl>
                                             <FormControl fullWidth>
                                                 <InputLabel id="Brand">Brand</InputLabel>
                                                 <Select
@@ -130,7 +113,7 @@ export default function SaleModal({ open, setOpen }) {
                                                 value={values.price}
                                             />
                                             <Button variant="contained" type="submit">
-                                                Submit
+                                            Add New Sale 
                                             </Button>
                                         </Box>
                                     </Form>

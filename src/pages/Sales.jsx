@@ -4,6 +4,7 @@ import { useEffect } from "react"
 import useStockCall from "../hooks/useStockCall"
 import { useState } from "react"
 import SaleModal from "../modals/SaleModal"
+import SaleTable from "../components/SaleTable"
 
 const Sales = () => {
   const { getStockData } = useStockCall()
@@ -13,9 +14,9 @@ const Sales = () => {
 
 
   useEffect(() => {
-    getStockData("firms")
-    getStockData("purchases")
+    getStockData("products")
     getStockData("brands")
+    getStockData("sales")
   }, [])
  
 
@@ -24,6 +25,9 @@ const Sales = () => {
     <div>
       <Typography variant="h4" color={"red"} mb={3} >Sales</Typography>
       <Button onClick={handleOpen} variant="contained" >NEW SALE</Button>
+
+      <SaleTable/>
+
 
       <SaleModal open={open} setOpen={setOpen}  />
 
