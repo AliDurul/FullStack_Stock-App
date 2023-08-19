@@ -24,18 +24,6 @@ export default function PurchaseTable() {
 
 
 
-  // const handleSaveClick = (id) => () => {
-
-  //   setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.View } });
-  // };
-
-  // const handleCancelClick = (id) => () => {
-  //   setRowModesModel({
-  //     ...rowModesModel,
-  //     [id]: { mode: GridRowModes.View, ignoreModifications: true },
-  //   });
-
-  // };
 
   const handleRowEditStop = (params, event) => {
     if (params.reason === GridRowEditStopReasons.rowFocusOut) {
