@@ -9,16 +9,18 @@ import ProductModal from "../modals/ProductModal"
 
 const Firms = () => {
   const { products } = useSelector(state => state.stock)
-  const { getStockData } = useStockCall()
+  const {getProdCatBrands } = useStockCall()
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true)
   
 
 
   useEffect(() => {
-    getStockData("products")
-    getStockData("categories")
-    getStockData("brands")
+    // getStockData("products")
+    // getStockData("categories")
+    // getStockData("brands")
+    getProdCatBrands()
+
   }, [])
  
 
