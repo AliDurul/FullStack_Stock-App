@@ -1,18 +1,19 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Button,  Typography } from "@mui/material"
+import { Box, Button, Typography } from "@mui/material"
 import { useEffect } from "react"
 import useStockCall from "../hooks/useStockCall"
 import { useSelector } from "react-redux"
 import { useState } from "react"
 import ProductTable from "../components/ProductTable"
 import ProductModal from "../modals/ProductModal"
+import lading from '../assets/loading1.gif'
 
 const Firms = () => {
-  const { products } = useSelector(state => state.stock)
-  const {getProdCatBrands } = useStockCall()
+  const { products, error, loading } = useSelector(state => state.stock)
+  const { getProdCatBrands } = useStockCall()
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true)
-  
+
 
 
   useEffect(() => {
@@ -22,7 +23,17 @@ const Firms = () => {
     getProdCatBrands()
 
   }, [])
- 
+
+  if (error) {
+    return <Box sx={{ display: "flex", justifyContent: 'center', height: "80vh", alignItems: 'center' }}>
+      <img src="https://bsmedia.business-standard.com/_media/bs/theme/faq_view_all/images/no-result-found.png" alt="" />
+    </Box>
+  } else if (loading) {
+    return <Box sx={{ display: "flex", justifyContent: 'center', height: "80vh", alignItems: 'center' }}>
+      <img src={lading} alt="" />
+    </Box>
+  }
+
 
 
   return (
@@ -30,7 +41,7 @@ const Firms = () => {
       <Typography variant="h4" color={"red"} mb={3} >Products</Typography>
       <Button onClick={handleOpen} variant="contained" >NEW PRODUCT</Button>
 
-      <ProductModal open={open} setOpen={setOpen}  />
+      <ProductModal open={open} setOpen={setOpen} />
 
       <ProductTable products={products} />
 

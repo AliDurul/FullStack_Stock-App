@@ -23,6 +23,7 @@ const stockSlice = createSlice({
       state.loading = false
       state[payload.url] = payload.data
     },
+    /* For promise all */
     getProdCatBrandsSuccess: (state,{payload}) => {
       state.loading = false
       state.products=payload[0]
