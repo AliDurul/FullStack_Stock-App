@@ -7,6 +7,7 @@ import { useState } from "react"
 import ProductTable from "../components/ProductTable"
 import ProductModal from "../modals/ProductModal"
 import lading from '../assets/loading1.gif'
+import errorMes from '../assets/no-result-found.avif'
 
 const Firms = () => {
   const { products, error, loading } = useSelector(state => state.stock)
@@ -26,7 +27,7 @@ const Firms = () => {
 
   if (error) {
     return <Box sx={{ display: "flex", justifyContent: 'center', height: "80vh", alignItems: 'center' }}>
-      <img src="https://bsmedia.business-standard.com/_media/bs/theme/faq_view_all/images/no-result-found.png" alt="" />
+      <img src={errorMes} alt="" />
     </Box>
   } else if (loading) {
     return <Box sx={{ display: "flex", justifyContent: 'center', height: "80vh", alignItems: 'center' }}>

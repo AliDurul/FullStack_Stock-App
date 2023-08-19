@@ -27,7 +27,8 @@ export default function FrimCard({ firm, handleOpen, setFakeFirm }) {
             display: "flex",
             flexDirection: "column",
             justifyContent:"space-between",
-            alignItems:"center"
+            alignItems:"center",
+            boxShadow: 7,
         }}>
 
             <CardContent>
