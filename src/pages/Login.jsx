@@ -59,15 +59,6 @@ const Login = () => {
           >
             <LockIcon size="30" />
           </Avatar>
-          
-          <Typography
-            variant="h4"
-            align="center"
-            mb={4}
-            color="secondary.light"
-          >
-           Ali@drl26.com
-          </Typography>
           <Typography
             variant="h4"
             align="center"
