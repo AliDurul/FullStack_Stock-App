@@ -10,6 +10,7 @@ import Products from "../pages/Products";
 import Firms from "../pages/Firms";
 import Brands from "../pages/Brands";
 import Home from "../pages/Home";
+import ErrorPage from "../pages/ErrorPage";
 
 const AppRouter = () => {
   return (
@@ -27,6 +28,7 @@ const AppRouter = () => {
             <Route path="brands" element={<Brands />} />
           </Route>
         </Route>
+        <Route path="*" element={<ErrorPage/>} />
       </Routes>
     </Router>
   );
