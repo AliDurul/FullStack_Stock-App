@@ -67,6 +67,7 @@ export default function PurchaseTable() {
     { field: 'createds', headerName: 'Date', headerAlign: "center", flex: 1, align: "center", },
     {
       field: 'firm',
+      valueGetter: (params) => params.row.firm_id?.name,
       headerName: 'Firm',
       flex: 2,
       headerAlign: "center",
@@ -77,6 +78,7 @@ export default function PurchaseTable() {
     },
     {
       field: 'brand',
+      valueGetter: (params) => params.row.brand_id?.name,
       headerName: 'Brand',
       headerAlign: "center",
       align: "center",
@@ -87,6 +89,7 @@ export default function PurchaseTable() {
     },
     {
       field: 'product',
+      valueGetter: (params) => params.row.product_id?.name,
       headerName: 'Product',
       headerAlign: "center",
       align: "center",
@@ -169,7 +172,7 @@ export default function PurchaseTable() {
             icon={< DeleteForeverIcon />}
             label='Delete'
             sx={btnStyle}
-            onClick={() => deleteStockData("sales", id)} />
+            onClick={(id) => deleteStockData("sales", id)} />
         ]
 
 

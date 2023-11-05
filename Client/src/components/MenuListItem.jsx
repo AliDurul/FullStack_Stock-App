@@ -9,7 +9,7 @@ import InventoryIcon from "@mui/icons-material/Inventory"
 import StoreIcon from "@mui/icons-material/Store"
 import StarsIcon from "@mui/icons-material/Stars"
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
-import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount"
+// import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount"
 import { useNavigate } from 'react-router-dom';
 
 const MenuListItem = () => {
@@ -47,11 +47,11 @@ const MenuListItem = () => {
             icon: <InventoryIcon />,
             url: "/stock/products/",
         },
-        {
-            title: "Admin Panel",
-            icon: <SupervisorAccountIcon />,
-            url: "https://11510.fullstack.clarusway.com/admin",
-        },
+        // {
+        //     title: "Admin Panel",
+        //     icon: <SupervisorAccountIcon />,
+        //     url: "https://11510.fullstack.clarusway.com/admin",
+        // },
     ]
 
 

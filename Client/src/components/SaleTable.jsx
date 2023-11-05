@@ -49,7 +49,7 @@ export default function SaleTable() {
 
         let brandID = brands.filter(brand => brand.name === newRow.brand).map(item => item.id)
         let productID = products.filter(product => product.name === newRow.product).map(item => item.id)
-    
+
         let updatedData = {
             brand_id: brandID[0],
             product_id: productID[0],
@@ -65,7 +65,7 @@ export default function SaleTable() {
         setRowModesModel(newRowModesModel);
     };
 
-  
+
 
     brands.forEach(element => {
         brandNames.push(element.name)
@@ -77,6 +77,7 @@ export default function SaleTable() {
         { field: 'createds', headerName: 'Date', headerAlign: "center", flex: 1, align: "center" },
         {
             field: 'brand',
+            valueGetter: (params) => params.row.brand_id?.name,
             headerName: 'Brand',
             headerAlign: "center",
             align: "center",
@@ -88,6 +89,8 @@ export default function SaleTable() {
         },
         {
             field: 'product',
+            valueGetter: (params) => params.row.product_id?.name,
+
             headerName: 'Product',
             headerAlign: "center",
             align: "center",
