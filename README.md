@@ -29,7 +29,7 @@
       
  1) run  `pnpm install`  or `yarn install` for node modules
  2) run `pnpm run dev` or `yarn run dev` for open development stage
-    
+ 3) Login as a Admin `admin@site.com` - `aA?123456`
    </td>
     <td> <li> <a href="https://github.com/AliDurul" target="_blank">Take a look at my other projects</a> <li> <a href="https://www.linkedin.com/in/ali-durul/" target="_blank">Visit me on Linkedin</a> 
   </tr>
