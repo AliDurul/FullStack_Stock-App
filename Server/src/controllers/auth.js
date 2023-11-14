@@ -37,7 +37,7 @@ module.exports = {
                 if (user.is_active) {
 
                     // Use UUID:
-                    // const { randomUUID } = require('node:crypto')
+                    // const { randomUUID } = require('crypto')
                     // let tokenData = await Token.findOne({ user_id: user._id })
                     // if (!tokenData) tokenData = await Token.create({
                     //     user_id: user._id,

@@ -6,7 +6,7 @@
 // app.use(logger):
 
 const morgan = require('morgan')
-const fs = require('node:fs')
+const fs = require('fs')
 
 // fs.mkdirSync('./logs', { recursive: true })
 

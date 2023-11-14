@@ -5,7 +5,7 @@
   "description": "Stock Management System",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon",
+    "start": "node index.js",
     "debug": "DEBUG=* nodemon"
   },
   "keywords": [],
@@ -13,9 +13,11 @@
   "license": "ISC Licence",
   "dependencies": {
     "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "express-async-errors": "^3.1.1",
+    "fs": "^0.0.1-security",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^7.6.2",
     "morgan": "^1.10.0",
