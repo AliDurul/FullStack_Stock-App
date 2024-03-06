@@ -7,24 +7,24 @@ import { object, string } from "yup"
 
 export const registerSchema = object({
   username: string()
-    .max(10, "Kullanici adi 10 karakterden az olmalidir.")
-    .required("username zorunludur"),
+    .max(10, "Username must be less than 10 characters.")
+    .required("username is required"),
   first_name: string()
-    .max(20, "İsim 20 karakterden az olmalidir.")
-    .required("first_name zorunludur"),
+    .max(20, "The name must be less than 20 characters.")
+    .required("first name is required"),
   last_name: string()
-    .max(20, "Soyisim 30 karakterden az olmalidir.")
-    .required("last_name zorunludur"),
+    .max(20, "Surname must be less than 30 characters.")
+    .required("Last name is required"),
 
-  email: string().email().required("Email zorunludur"),
+  email: string().email().required("Email is required."),
   password: string()
-    .required("password zorunludur")
-    .min(8, "password en az 8 karakter olmalidir")
-    .max(20, "password en fazla 20 karakter olmalidir")
-    .matches(/\d+/, "Password bir sayi içermelidir")
-    .matches(/[a-z]/, "Password bir küçük harf içermelidir")
-    .matches(/[A-Z]/, "Password bir büyük harf içermelidir")
-    .matches(/[!,?{}><%&$#£+-.]+/, "Password bir özel karakter içermelidir"),
+    .required("password is required.")
+    .min(8, "password must be at least 8 characters")
+    .max(20, "password must be at most 20 characters.")
+    .matches(/\d+/, "Password bir sayi içermelidir.")
+    .matches(/[a-z]/, "Password must contain one lowercase letter.")
+    .matches(/[A-Z]/, "Password must contain one uppercase letter.")
+    .matches(/[!,?{}><%&$#£+-.]+/, "Password must contain one special character."),
 })
 
 const RegisterForm = ({values,handleChange,errors,touched,handleBlur}) => {

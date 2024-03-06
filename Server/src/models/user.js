@@ -111,7 +111,7 @@ UserSchema.pre(['save', 'updateOne'], function (next) {
         if (data?.password) {
 
             // pass == (min 1: lowerCase, upperCase, Numeric, @$!%*?& + min 8 chars)
-            const isPasswordValidated = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/.test(data.password)
+            const isPasswordValidated = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.]).{8,}$/.test(data.password)
 
             if (isPasswordValidated) {
 

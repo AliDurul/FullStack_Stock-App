@@ -20,7 +20,7 @@ const useAuthApiCall = () => {
         userData
       );
       dispatch(loginSuccess(data));
-      toastSuccessNotify("login islemi basarili");
+      toastSuccessNotify("login process successful.");
       navigate("/stock");
     } catch (error) {
       dispatch(fetchFail());
@@ -36,7 +36,7 @@ const useAuthApiCall = () => {
         `${import.meta.env.VITE_BASE_URL}/account/auth/logout/`
       );
       dispatch(logoutSuccess());
-      toastSuccessNotify("Logout  islemi basarili");
+      toastSuccessNotify("Logout process successful");
       navigate("/");
     } catch (error) {
       console.log(error);
@@ -54,12 +54,11 @@ const useAuthApiCall = () => {
         userData
       );
       dispatch(registerSuccess(data));
-      toastSuccessNotify("register islemi basarili");
+      toastSuccessNotify("Register process successful");
       navigate("/stock");
     } catch (error) {
       dispatch(fetchFail());
-      console.log(error);
-      toastErrorNotify(error.message);
+      toastErrorNotify(error.response.data.message);
     }
   };
 
