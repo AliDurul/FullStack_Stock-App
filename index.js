@@ -3,6 +3,7 @@
     NODEJS EXPRESS | CLARUSWAY FullStack Team
 ------------------------------------------------------- */
 const express = require('express')
+const path = require('node:path')
 const app = express()
 
 /* ------------------------------------------------------- */
@@ -29,6 +30,8 @@ dbConnection()
 // Accept JSON:
 app.use(express.json())
 
+app.use(express.static(path.join(__dirname, '/client/build'))) // Static Files
+
 // Cors
 app.use(require('cors')()) // Run with defaults.
 
@@ -48,21 +51,32 @@ app.use(require('./src/middlewares/findSearchSortPage'))
 // Routes:
 
 // HomePath:
-app.all('/', (req, res) => {
+app.all('/api/v1/', (req, res) => {
     res.send({
         error: false,
         message: 'Welcome to Stock Management API',
         documents: {
-            swagger: '/documents/swagger',
-            redoc: '/documents/redoc',
-            json: '/documents/json',
+            swagger: '/api/v1/documents/swagger',
+            redoc: '/api/v1/documents/redoc',
+            json: '/api/v1/documents/json',
         },
         user: req.user
     })
 })
 
 // Routes:
-app.use(require('./src/routes'))
+app.use('/api/v1', require('./src/routes'))
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '/client/build/index.html'))  
+})
+
+app.use('*', (req, res) => {
+    res.status(404).json({
+        error: true,
+        message: '404 Not Found'
+    })
+})
 
 /* ------------------------------------------------------- */
 
