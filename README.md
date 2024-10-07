@@ -55,7 +55,7 @@ For administrative control, there's an admin panel that empowers administrators 
 </div>
 
 
-[Live Link](https://fullstack-stock-app.vercel.app)
+[Live Link](https://full-stack-stock-app.vercel.app/)
 
 ![stockapp](https://github.com/AliDurul/FullStack-Stock-App/assets/80897590/26627259-cb60-47d9-bd50-8c64f7877254)
 
