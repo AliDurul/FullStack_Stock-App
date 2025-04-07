@@ -68,14 +68,11 @@ app.all('/api/v1/', (req, res) => {
 app.use('/api/v1', require('./src/routes'))
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '/client/build/index.html'))  
+    res.sendFile(path.join(__dirname, '/client/build/index.html'))
 })
 
 app.use('*', (req, res) => {
-    res.status(404).json({
-        error: true,
-        message: '404 Not Found'
-    })
+    res.sendFile(path.join(__dirname, '/client/build/index.html'))
 })
 
 /* ------------------------------------------------------- */
